@@ -1,17 +1,24 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
+
+import Contacts from './compnents/contact/Contacts';
 import Navbar from './compnents/navbar/navbar';
-import Contact from './compnents/contact/contact';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import'font-awesome/css/font-awesome.min.css';
+import './App.css';
 
-function App() {
-  return (
-    <div className="App">
 
-      <Navbar title="header"/>
-       <Contact name="Client"/>
-       <Contact />
-    </div>
-  );
+class App extends Component {
+
+  render() {
+    return (
+      <div className="App">
+
+        <Navbar title="Contactes List" />
+        <Contacts />
+       
+      </div>
+    );
+  }
 }
 
 export default App;
