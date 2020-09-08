@@ -4,6 +4,7 @@ import TextInputGroup from '../helpers/TextInputGroup';
 
 class AddContact extends Component {
 
+   
     state = {
         name: '',
         email: '',
@@ -51,6 +52,7 @@ class AddContact extends Component {
                 errors:{}
             }
         )
+        this.props.history.push('/');
 
     }
     render() {

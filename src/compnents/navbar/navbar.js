@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import {Link} from 'react-router-dom'
  const Navbar = ( props) => {
     
    const { title} = props;
@@ -13,7 +14,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
             
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item active">
-                        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                        
+                        {/* Link in component in react router dom */}
+
+                        <Link className="nav-link" to="/">Home </Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link" to="/About">About</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link" to="/AddContact">Add </Link>
                     </li>
                     
                 </ul>

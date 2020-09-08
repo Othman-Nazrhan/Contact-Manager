@@ -7,6 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './App.css';
 import AddContact from './compnents/contact/AddContact';
 import About from './compnents/pages/About'
+import NotFound from './compnents/pages/NotFound'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 
 
@@ -21,9 +22,10 @@ class App extends Component {
             <Navbar title="Contactes List" />
             <div className='container'>
               <Switch>
-                <Route exact path='/' component={Contacts} />
-                <Route exact path='/AddContact' component={AddContact} />
-                <Route exact path='/About' component={About} />
+                <Route exact path='/' component={ Contacts } />
+                <Route exact path='/AddContact' component={ AddContact }  />
+                <Route exact path='/About' component={ About}  />
+                <Route component={ NotFound } />
               </Switch>
             </div>
           </div>
