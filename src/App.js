@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './App.css';
 import AddContact from './compnents/contact/AddContact';
+import About from './compnents/pages/About'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 
 
 class App extends Component {
@@ -13,14 +15,19 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <div className="App">
+        <Router>
+          <div className="App">
 
-          <Navbar title="Contactes List" />
-          <div className='container'>
-            <AddContact />
-            <Contacts />
+            <Navbar title="Contactes List" />
+            <div className='container'>
+              <Switch>
+                <Route exact path='/' component={Contacts} />
+                <Route exact path='/AddContact' component={AddContact} />
+                <Route exact path='/About' component={About} />
+              </Switch>
+            </div>
           </div>
-        </div>
+        </Router>
       </Provider>
     );
   }
