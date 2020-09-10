@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
+import Axios from 'axios';
 
 
 const Context = React.createContext();
 
 // reducer method
 const reducer = (state, action) => {
-   
+
     switch (action.type) {
         case 'DELETE_CONTACT':
             return {
                 contacts: state.contacts.filter((contact) => contact.id !== action.payload)
             };
-            case 'ADD_CONTACT':
-                return {
-                    
-                    contacts: [action.payload, ...state.contacts]
-                };
+        case 'ADD_CONTACT':
+            return {
+
+                contacts: [action.payload, ...state.contacts]
+            };
+        case 'UPDATE_CONTACT':
+            return {
+
+                contacts: state.contacts.map((contact) => contact.id === action.payload.id ? contact = action.payload : contact)
+            };
         default:
             return state;
     }
@@ -26,11 +32,20 @@ export class Provider extends Component {
     //  data 
     state = {
         contacts: [
-            { id: 1, name: "Othman Na", email: "othman@gmail.com", tel: "0987654321" },
-            { id: 2, name: "Alaoui Adibe", email: "alaoui@gmail.com", tel: "12345678900" },
-            { id: 3, name: "Simo bahti", email: "simo@gmail.com", tel: "6789012345" },
+            { id: 1, name: "Othman Na", email: "othman@gmail.com", phone: "0987654321" },
+            { id: 2, name: "Alaoui Adibe", email: "alaoui@gmail.com", phone: "12345678900" },
+            { id: 3, name: "Simo bahti", email: "simo@gmail.com", phone: "6789012345" },
         ],
         dispatch: action => this.setState(state => reducer(state, action))
+    }
+
+    // GET USERS REQUEST WITH API
+    componentWillMount() {
+        Axios.get('https://jsonplaceholder.typicode.com/users')
+            .then(res => this.setState({
+                contacts: res.data
+            }))
+            .catch(err => console.error(err))
     }
     render() {
 

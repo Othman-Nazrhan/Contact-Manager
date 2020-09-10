@@ -1,55 +1,79 @@
 import React, { Component } from 'react'
 import { Consumer } from '../context';
 import TextInputGroup from '../helpers/TextInputGroup';
-import Axios from'axios'
+import Axios from 'axios'
 
 class AddContact extends Component {
 
-   
+
     state = {
         name: '',
         email: '',
         phone: '',
-        errors: { }
+        errors: {}
+    }
+
+    async componentDidMount() {
+        const id = this.props.match.params.id;
+        try {
+            const res = await Axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+            this.setState({
+
+                name: res.data.name,
+                email: res.data.email,
+                phone: res.data.phone
+
+            })
+        }
+
+        catch (e) {
+            console.log(e)
+        }
     }
 
     // $event = e 
     onChangeInput = (e) => this.setState({ [e.target.name]: e.target.value })
 
-    Submit = (dispatch, size, e) => {
+    Submit = (dispatch, e) => {
         e.preventDefault();
         const { name, email, phone } = this.state;
 
-     if(name === ""){
-         this.setState({errors :{ name: "this name is requred" }})
-         return;
-     }
-     if(email === ""){
-        this.setState({errors :{ email:'this email is requred' }})
-        return;
-    }
-    if(phone === ""){
-        this.setState({errors :{ phone:'this phone is requred' }})
-        return;
-    }
-      
-    // POST REQUEST WITH API
-    const newContact = { name, email, phone}
-    
-       Axios.post('https://jsonplaceholder.typicode.com/users',newContact)
-       .then(res=>( dispatch({
-            type: "ADD_CONTACT",
-             payload: newContact
+        if (name === "") {
+            this.setState({ errors: { name: "this name is requred" } })
+            return;
+        }
+        if (email === "") {
+            this.setState({ errors: { email: 'this email is requred' } })
+            return;
+        }
+        if (phone === "") {
+            this.setState({ errors: { phone: 'this phone is requred' } })
+            return;
+        }
 
-        })))
-        .catch(err=>(console.error('error')))
-        
+        // POST REQUEST WITH API
+        const upContact = {
+            name,
+            email,
+            phone
+        }
+         
+        const id =this.props.match.params.id;
+
+        Axios.put(`https://jsonplaceholder.typicode.com/users/${id}`,upContact)
+            .then(res => (dispatch({
+                type: "UPDATE_CONTACT",
+                payload: res.data
+
+            })))
+            .catch(err => (console.error('error')))
+
         this.setState(
             {
                 name: '',
                 email: '',
                 phone: '',
-                errors:{}
+                errors: {}
             }
         )
 
@@ -69,7 +93,7 @@ class AddContact extends Component {
                             <form onSubmit={this.Submit.bind(this, dispatch, value.contacts.length)}>
                                 <div className="card">
                                     <div className="card-body">
-                                        <h4 className="card-title"> Add Conatct</h4>
+                                        <h4 className="card-title"> Edit Conatct</h4>
                                         <div className="card-text">
 
                                             <TextInputGroup
@@ -99,8 +123,8 @@ class AddContact extends Component {
                                                 onChange={this.onChangeInput}
 
                                             />
-                                            <button className='btn btn-success btn-block'>
-                                                Add New Contact</button></div>
+                                            <button className='btn btn-danger btn-block'>
+                                                Edit Contact</button></div>
                                     </div>
                                 </div>
                             </form>
