@@ -1,21 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Contact from './contact'
 import { Consumer } from '../context'
+import { useSelector } from 'react-redux'
 
-class Contacts extends Component {
+const Contacts = ()  => {
+
+        const conatcts = useSelector(state => state.contacts)
+        console.log(conatcts)
+   
 
 
-
-    deleteConatct(id) {
-        const { contacts } = this.state;
-        const newListContacts = contacts.filter((contact) => contact.id !== id)
-
-        this.setState({
-            contacts: newListContacts
-        })
-    }
-
-    render() {
 
         // const { contacts } = this.state;
 
@@ -30,6 +24,5 @@ class Contacts extends Component {
         )
 
     }
-}
 
 export default Contacts;

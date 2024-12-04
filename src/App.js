@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Provider } from './compnents/context'
+
 import Contacts from './compnents/contact/Contacts';
 import Navbar from './compnents/navbar/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,15 +16,10 @@ class App extends Component {
 
   render() {
     return (
-      <Provider>
+    
         <Router>
           <div className="App">
-
-
-          
-        
             <Navbar title="Contact Manager" />
-           
             <div className='container'>
               <Switch>
                 <Route exact path='/' component={ Contacts } />
@@ -36,7 +31,7 @@ class App extends Component {
             </div>
           </div>
         </Router>
-      </Provider>
+     
     );
   }
 }

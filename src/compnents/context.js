@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
-
-
 const Context = React.createContext();
 
 // reducer method
@@ -32,9 +30,9 @@ export class Provider extends Component {
     //  data 
     state = {
         contacts: [
-            { id: 1, name: "Othman Na", email: "othman@gmail.com", phone: "0987654321" },
-            { id: 2, name: "Alaoui Adibe", email: "alaoui@gmail.com", phone: "12345678900" },
-            { id: 3, name: "Simo bahti", email: "simo@gmail.com", phone: "6789012345" },
+            { id: 1, name: "use 1", email: "one@gmail.com", phone: "0987654321" },
+            { id: 2, name: "use 2", email: "ada@gmail.com", phone: "12345678900" },
+            { id: 3, name: "use 3", email: "tree@gmail.com", phone: "6789012345" },
         ],
         dispatch: action => this.setState(state => reducer(state, action))
     }
