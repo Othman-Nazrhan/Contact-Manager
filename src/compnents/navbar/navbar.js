@@ -1,30 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './navbar.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from 'react-router-dom'
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material'
+
 const Navbar = (props) => {
 
   const { title } = props;
 
   return (
-
-    <nav className="navbar navbar-expand-sm navbar-light bg-success">
-      <a className="navbar-brand" href="#">{title}</a>
-      <ul className="navbar-nav mr-auto mt-2 mt-lg-0" >
-        <li className="nav-item active">
-          {/* Link in component in react router dom */}
-          <Link className="nav-link" to="/">Home </Link>
-        </li>
-        <li className="nav-item active">
-          <Link className="nav-link" to="/About">About</Link>
-        </li>
-        <li className="nav-item active">
-          <Link className="nav-link" to="/AddContact">Add </Link>
-        </li>
-
-      </ul>
-    </nav>
+    <AppBar position="static" color="primary">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          {title}
+        </Typography>
+        <Box>
+          <Button color="inherit" component={Link} to="/">Home</Button>
+          <Button color="inherit" component={Link} to="/About">About</Button>
+          <Button color="inherit" component={Link} to="/AddContact">Add</Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   )
 }
 

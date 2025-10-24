@@ -1,28 +1,25 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Contact from './contact'
 import { Consumer } from '../context'
-import { useSelector } from 'react-redux'
 
-const Contacts = ()  => {
+class Contacts extends Component {
 
-        const conatcts = useSelector(state => state.contacts)
-        console.log(conatcts)
-   
-
-
-
-        // const { contacts } = this.state;
-
+    render() {
         return (
-            <Consumer>{value => (
-                <div>
-                    {value.contacts.map((contact) => (
-                        <Contact key={contact.id} data={contact} DeleteContactFromChild={this.deleteConatct.bind(this, contact.id)} />
-                    ))}
-                </div>)}
+            <Consumer>{value => {
+                const { contacts } = value;
+                console.log(contacts);
+                return (
+                    <div>
+                        {contacts.map((contact) => (
+                            <Contact key={contact.id} data={contact} />
+                        ))}
+                    </div>
+                );
+            }}
             </Consumer>
-        )
-
+        );
     }
+}
 
 export default Contacts;

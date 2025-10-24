@@ -38,7 +38,7 @@ export class Provider extends Component {
     }
 
     // GET USERS REQUEST WITH API
-    componentWillMount() {
+    componentDidMount() {
         Axios.get('https://jsonplaceholder.typicode.com/users')
             .then(res => this.setState({
                 contacts: res.data

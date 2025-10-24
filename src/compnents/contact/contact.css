@@ -1,0 +1,26 @@
+.contact-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contact-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.contact-card p {
+  margin: 0.5rem 0;
+  color: #666;
+}
+
+.contact-actions {
+  margin-top: 1rem;
+}
+
+.contact-actions button {
+  margin-right: 0.5rem;
+}

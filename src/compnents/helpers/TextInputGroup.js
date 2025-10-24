@@ -1,17 +1,18 @@
 import React from 'react'
-import classnames from 'classnames'
+import { TextField } from '@mui/material'
 
 export default function TextInputGroup(props) {
   return (
-    <div className="form-group" >
-      <label htmlFor={props.name}>{props.label}</label>
-      <input name={props.name}
-        className={classnames('form-control', { 'is-invalid ': props.error })}
-        type={props.type}
-        value={props.value}
-        onChange={props.onChange}
-      />
-      <div className="invalid-feedback"> {props.error}</div>
-    </div>
+    <TextField
+      name={props.name}
+      label={props.label}
+      type={props.type}
+      value={props.value}
+      onChange={props.onChange}
+      error={!!props.error}
+      helperText={props.error}
+      fullWidth
+      margin="normal"
+    />
   )
 }

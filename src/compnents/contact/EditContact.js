@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Consumer } from '../context';
-import TextInputGroup from '../helpers/TextInputGroup';
 import Axios from 'axios'
+import { Card, CardContent, Typography, Button, TextField } from '@mui/material'
 
-class AddContact extends Component {
+class EditContact extends Component {
 
 
     state = {
@@ -31,7 +31,6 @@ class AddContact extends Component {
         }
     }
 
-    // $event = e 
     onChangeInput = (e) => this.setState({ [e.target.name]: e.target.value })
 
     Submit = (dispatch, e) => {
@@ -57,7 +56,7 @@ class AddContact extends Component {
             email,
             phone
         }
-         
+
         const id =this.props.match.params.id;
 
         Axios.put(`https://jsonplaceholder.typicode.com/users/${id}`,upContact)
@@ -77,7 +76,7 @@ class AddContact extends Component {
             }
         )
 
-        // reduction link 
+        // reduction link
         this.props.history.push('/');
 
     }
@@ -89,46 +88,59 @@ class AddContact extends Component {
                 {value => {
                     const { dispatch } = value;
                     return (
-                        <div>
-                            <form onSubmit={this.Submit.bind(this, dispatch, value.contacts.length)}>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h4 className="card-title"> Edit Conatct</h4>
-                                        <div className="card-text">
+                        <Card sx={{ maxWidth: 600, margin: 'auto', marginTop: 4 }}>
+                            <CardContent>
+                                <Typography variant="h5" component="div" gutterBottom>
+                                    Edit Contact
+                                </Typography>
+                                <form onSubmit={this.Submit.bind(this, dispatch)}>
+                                    <TextField
+                                        name="name"
+                                        label="Name"
+                                        value={name}
+                                        type="text"
+                                        error={!!errors.name}
+                                        helperText={errors.name}
+                                        onChange={this.onChangeInput}
+                                        fullWidth
+                                        margin="normal"
+                                    />
 
-                                            <TextInputGroup
-                                                name="name"
-                                                label="name"
-                                                value={name}
-                                                type="text"
-                                                error={errors.name}
-                                                onChange={this.onChangeInput}
-                                            />
+                                    <TextField
+                                        name="email"
+                                        label="Email"
+                                        value={email}
+                                        type="email"
+                                        error={!!errors.email}
+                                        helperText={errors.email}
+                                        onChange={this.onChangeInput}
+                                        fullWidth
+                                        margin="normal"
+                                    />
 
-                                            <TextInputGroup
-                                                name="email"
-                                                label="email"
-                                                value={email}
-                                                type="email"
-                                                error={errors.email}
-                                                onChange={this.onChangeInput}
-                                            />
-
-                                            <TextInputGroup
-                                                name="phone"
-                                                label="phone"
-                                                value={phone}
-                                                type="phone"
-                                                error={errors.phone}
-                                                onChange={this.onChangeInput}
-
-                                            />
-                                            <button className='btn btn-danger btn-block'>
-                                                Edit Contact</button></div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                    <TextField
+                                        name="phone"
+                                        label="Phone"
+                                        value={phone}
+                                        type="tel"
+                                        error={!!errors.phone}
+                                        helperText={errors.phone}
+                                        onChange={this.onChangeInput}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        fullWidth
+                                        sx={{ marginTop: 2 }}
+                                    >
+                                        Edit Contact
+                                    </Button>
+                                </form>
+                            </CardContent>
+                        </Card>
                     )
                 }
                 }
@@ -140,4 +152,4 @@ class AddContact extends Component {
 
     }
 }
-export default AddContact;
+export default EditContact;

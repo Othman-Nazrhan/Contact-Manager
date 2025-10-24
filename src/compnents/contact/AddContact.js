@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Consumer } from '../context';
-import TextInputGroup from '../helpers/TextInputGroup';
 import Axios from 'axios'
+import { Card, CardContent, Typography, Button, TextField } from '@mui/material'
 
 class AddContact extends Component {
 
@@ -13,10 +13,9 @@ class AddContact extends Component {
     errors: {}
   }
 
-  // $event = e 
   onChangeInput = (e) => this.setState({ [e.target.name]: e.target.value })
 
-  Submit = (dispatch, size, e) => {
+  Submit = (dispatch, e) => {
     e.preventDefault();
     const { name, email, phone } = this.state;
 
@@ -65,46 +64,59 @@ class AddContact extends Component {
         {value => {
           const { dispatch } = value;
           return (
-            <div>
-              <form onSubmit={this.Submit.bind(this, dispatch, value.contacts.length)}>
-                <div className="card">
-                  <div className="card-body">
-                    <h4 className="card-title"> Add Conatct</h4>
-                    <div className="card-text">
+            <Card sx={{ maxWidth: 600, margin: 'auto', marginTop: 4 }}>
+              <CardContent>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Add Contact
+                </Typography>
+                <form onSubmit={this.Submit.bind(this, dispatch)}>
+                  <TextField
+                    name="name"
+                    label="Name"
+                    value={name}
+                    type="text"
+                    error={!!errors.name}
+                    helperText={errors.name}
+                    onChange={this.onChangeInput}
+                    fullWidth
+                    margin="normal"
+                  />
 
-                      <TextInputGroup
-                        name="name"
-                        label="name"
-                        value={name}
-                        type="text"
-                        error={errors.name}
-                        onChange={this.onChangeInput}
-                      />
+                  <TextField
+                    name="email"
+                    label="Email"
+                    value={email}
+                    type="email"
+                    error={!!errors.email}
+                    helperText={errors.email}
+                    onChange={this.onChangeInput}
+                    fullWidth
+                    margin="normal"
+                  />
 
-                      <TextInputGroup
-                        name="email"
-                        label="email"
-                        value={email}
-                        type="email"
-                        error={errors.email}
-                        onChange={this.onChangeInput}
-                      />
-
-                      <TextInputGroup
-                        name="phone"
-                        label="phone"
-                        value={phone}
-                        type="phone"
-                        error={errors.phone}
-                        onChange={this.onChangeInput}
-
-                      />
-                      <button className='btn btn-success btn-block'>
-                        Add New Contact</button></div>
-                  </div>
-                </div>
-              </form>
-            </div>
+                  <TextField
+                    name="phone"
+                    label="Phone"
+                    value={phone}
+                    type="tel"
+                    error={!!errors.phone}
+                    helperText={errors.phone}
+                    onChange={this.onChangeInput}
+                    fullWidth
+                    margin="normal"
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    sx={{ marginTop: 2 }}
+                  >
+                    Add New Contact
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           )
         }
         }
