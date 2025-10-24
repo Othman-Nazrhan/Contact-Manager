@@ -36,12 +36,30 @@ class AddContact extends Component {
     const newContact = { name, email, phone }
 
     Axios.post('https://jsonplaceholder.typicode.com/users', newContact)
-      .then(res => (dispatch({
-        type: "ADD_CONTACT",
-        payload: newContact
-
-      })))
-      .catch(err => (console.error('error')))
+      .then(res => {
+        dispatch({
+          type: "ADD_CONTACT",
+          payload: newContact
+        });
+        // Show snackbar
+        this.setState({
+          snackbar: {
+            open: true,
+            message: 'Contact added successfully!',
+            severity: 'success'
+          }
+        });
+      })
+      .catch(err => {
+        console.error('error');
+        this.setState({
+          snackbar: {
+            open: true,
+            message: 'Failed to add contact.',
+            severity: 'error'
+          }
+        });
+      })
 
     this.setState(
       {

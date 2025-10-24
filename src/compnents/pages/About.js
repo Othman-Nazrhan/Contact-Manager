@@ -18,6 +18,12 @@ export default function About() {
                     Features include:
                     <ul style={{ textAlign: 'left', display: 'inline-block' }}>
                         <li>Add, edit, and delete contacts</li>
+                        <li>Search contacts by name or email</li>
+                        <li>Sort contacts by name, email, or phone</li>
+                        <li>Confirmation dialog for delete actions</li>
+                        <li>Snackbar notifications for actions</li>
+                        <li>Contact counter on the home page</li>
+                        <li>Dark mode toggle in the navbar</li>
                         <li>Responsive design for mobile and desktop</li>
                         <li>Intuitive navigation with React Router</li>
                         <li>State management with Redux</li>

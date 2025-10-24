@@ -60,12 +60,30 @@ class EditContact extends Component {
         const id =this.props.match.params.id;
 
         Axios.put(`https://jsonplaceholder.typicode.com/users/${id}`,upContact)
-            .then(res => (dispatch({
-                type: "UPDATE_CONTACT",
-                payload: res.data
-
-            })))
-            .catch(err => (console.error('error')))
+            .then(res => {
+                dispatch({
+                    type: "UPDATE_CONTACT",
+                    payload: res.data
+                });
+                // Show snackbar
+                this.setState({
+                    snackbar: {
+                        open: true,
+                        message: 'Contact updated successfully!',
+                        severity: 'success'
+                    }
+                });
+            })
+            .catch(err => {
+                console.error('error');
+                this.setState({
+                    snackbar: {
+                        open: true,
+                        message: 'Failed to update contact.',
+                        severity: 'error'
+                    }
+                });
+            })
 
         this.setState(
             {
