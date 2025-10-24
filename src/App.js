@@ -1,38 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Contacts from './compnents/contact/Contacts';
-import Navbar from './compnents/navbar/navbar';
+import Contacts from './components/contact/Contacts';
+import Navbar from './components/navbar/navbar';
 import './App.css';
-import AddContact from './compnents/contact/AddContact';
-import EditContact from './compnents/contact/EditContact';
-import About from './compnents/pages/About'
-import NotFound from './compnents/pages/NotFound'
+import AddContact from './components/contact/AddContact';
+import EditContact from './components/contact/EditContact';
+import About from './components/pages/About'
+import NotFound from './components/pages/NotFound'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Container } from '@mui/material'
 
-
-class App extends Component {
-
-  render() {
-    return (
-
-        <Router>
-          <div className="App">
-            <Navbar title="Contact Manager" />
-            <Container maxWidth="md" sx={{ marginTop: 4 }}>
-              <Switch>
-                <Route exact path='/' component={ Contacts } />
-                <Route exact path='/AddContact' component={ AddContact }  />
-                <Route exact path="/EditContact/:id" component={ EditContact }  />
-                <Route exact path='/About' component={ About}  />
-                <Route component={ NotFound } />
-              </Switch>
-            </Container>
-          </div>
-        </Router>
-
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Navbar title="Contact Manager" />
+        <Container maxWidth="md" sx={{ marginTop: 4 }}>
+          <Switch>
+            <Route exact path='/' component={Contacts} />
+            <Route exact path='/AddContact' component={AddContact} />
+            <Route exact path="/EditContact/:id" component={EditContact} />
+            <Route exact path='/About' component={About} />
+            <Route component={NotFound} />
+          </Switch>
+        </Container>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

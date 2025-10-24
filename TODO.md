@@ -23,3 +23,11 @@
 # Upgrade Home Page Design
 
 - [x] Improve layout and styling of the home page (Contacts component)
+
+# Code Refactoring and Structure
+
+- [ ] Fix ESLint errors and warnings
+- [ ] Convert class components to functional components
+- [ ] Improve code structure and naming conventions
+- [ ] Remove unused code and console.logs
+- [ ] Ensure consistent formatting and best practices

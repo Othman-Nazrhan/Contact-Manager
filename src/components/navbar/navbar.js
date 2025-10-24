@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './navbar.css'
 import { Link } from 'react-router-dom'
 import { AppBar, Toolbar, Typography, Button, Box, IconButton } from '@mui/material'
-import { Brightness4, Brightness7 } from '@mui/icons-material'
+import { Brightness4 } from '@mui/icons-material'
 
 const Navbar = (props) => {
 
